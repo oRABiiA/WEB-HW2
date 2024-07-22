@@ -1,7 +1,7 @@
 import { useTheme } from "../App";
 
 const Contact = ({ setCurrentPage }) => {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const isDarkMode = theme === "dark";
 
   return (
@@ -24,7 +24,7 @@ const Contact = ({ setCurrentPage }) => {
         `}
       </style>
       <div
-        className={`contact-page p-8 ${
+        className={`contact-page p-8 transition-colors duration-500 ease-in-out ${
           isDarkMode
             ? "bg-customDark text-white"
             : "bg-customBlue text-gray-800"
@@ -48,13 +48,13 @@ const Contact = ({ setCurrentPage }) => {
         <div className="grid md:grid-cols-2 gap-8">
           <form
             className={`contact-form space-y-4 ${
-              isDarkMode ? "bg-zinc-800" : "bg-white"
+              isDarkMode ? "bg-gray-600" : "bg-gray-200"
             } p-6 rounded-lg shadow-md opacity-0 fade-in-element`}
             style={{ animationDelay: "0.3s" }}
           >
             <input
               className={`w-full p-2 rounded ${
-                isDarkMode ? "bg-gray-600 text-white" : "bg-gray-100"
+                isDarkMode ? "bg-slate-200 text-black" : "bg-white"
               }`}
               type="text"
               name="name"
@@ -63,7 +63,7 @@ const Contact = ({ setCurrentPage }) => {
             />
             <input
               className={`w-full p-2 rounded ${
-                isDarkMode ? "bg-gray-600 text-white" : "bg-gray-100"
+                isDarkMode ? "bg-slate-200 text-black" : "bg-white"
               }`}
               type="email"
               name="email"
@@ -72,7 +72,7 @@ const Contact = ({ setCurrentPage }) => {
             />
             <input
               className={`w-full p-2 rounded ${
-                isDarkMode ? "bg-gray-600 text-white" : "bg-gray-100"
+                isDarkMode ? "bg-slate-200 text-black" : "bg-white"
               }`}
               type="text"
               name="subject"
@@ -81,7 +81,7 @@ const Contact = ({ setCurrentPage }) => {
             />
             <textarea
               className={`w-full p-2 rounded ${
-                isDarkMode ? "bg-gray-600 text-white" : "bg-gray-100"
+                isDarkMode ? "bg-slate-200 text-black" : "bg-white"
               }`}
               name="message"
               placeholder="Write your message..."
@@ -106,7 +106,7 @@ const Contact = ({ setCurrentPage }) => {
           >
             <div
               className={`${
-                isDarkMode ? "bg-zinc-800" : "bg-white"
+                isDarkMode ? "bg-gray-600" : "bg-gray-200"
               } p-6 rounded-lg shadow-md`}
             >
               <h2 className="text-xl font-bold mb-4">Other Ways to Reach Us</h2>
@@ -125,7 +125,7 @@ const Contact = ({ setCurrentPage }) => {
 
             <div
               className={`${
-                isDarkMode ? "bg-zinc-800" : "bg-white"
+                isDarkMode ? "bg-gray-600" : "bg-gray-200"
               } p-6 rounded-lg shadow-md`}
             >
               <h2 className="text-xl font-bold mb-4">Business Hours 🕒</h2>
@@ -139,7 +139,7 @@ const Contact = ({ setCurrentPage }) => {
 
         <div
           className={`mt-8 ${
-            isDarkMode ? "bg-zinc-800" : "bg-white"
+            isDarkMode ? "bg-gray-600" : "bg-gray-200"
           } p-6 rounded-lg shadow-md opacity-0 fade-in-element`}
           style={{ animationDelay: "0.5s" }}
         >

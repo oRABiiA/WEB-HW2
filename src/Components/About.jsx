@@ -24,7 +24,7 @@ const About = ({ setCurrentPage }) => {
         `}
       </style>
       <div
-        className={`flex flex-col min-h-screen ${
+        className={`flex flex-col min-h-screen transition-colors duration-500 ease-in-out ${
           isDarkMode
             ? "bg-customDark text-white"
             : "bg-customBlue text-gray-800"

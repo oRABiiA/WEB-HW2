@@ -5,8 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customDark: "#666563",
-        customBlue: "#D3D6F9",
+        // customDark: "#1C212F",
+        customDark: "#1B212F",
+        customBlue: "#F7FDFE",
       },
     },
   },

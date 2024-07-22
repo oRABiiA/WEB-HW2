@@ -7,6 +7,7 @@ import Header from "./Components/Header.jsx";
 import About from "./Components/About.jsx";
 import Contact from "./Components/Contact.jsx";
 import FAQ from "./Components/FAQ.jsx";
+import CreatePage from "./Components/CreatePage.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -58,6 +59,8 @@ const App = () => {
         );
       case "uploadPage":
         return <UploadPage setCurrentPage={handlePageChange} />;
+      case "createPage":
+        return <CreatePage setCurrentPage={handlePageChange} />;
       case "about":
         return <About setCurrentPage={handlePageChange} />;
       case "contact":
@@ -70,8 +73,8 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div
-        className={`flex flex-col min-h-screen ${
-          theme === "light" ? "bg-customBlue " : "bg-customDark"
+        className={`flex flex-col min-h-screen transition-colors duration-500 ease-in-out ${
+          theme === "light" ? "bg-customBlue" : "bg-customDark"
         }`}
       >
         <Header setCurrentPage={handlePageChange} />
