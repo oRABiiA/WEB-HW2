@@ -10,10 +10,10 @@ const Header = ({ setCurrentPage }) => {
 
   return (
     <header
-      className={`py-4 ${
+      className={`py-4 transition-colors duration-500 ease-in-out ${
         isDarkMode
-          ? "bg-gray-400 text-black font-bold"
-          : "bg-white text-gray-800"
+          ? "bg-gray-600 text-black font-bold"
+          : "bg-gray-200 text-gray-800"
       }`}
     >
       <div className="container mx-auto px-4">

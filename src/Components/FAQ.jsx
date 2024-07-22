@@ -89,7 +89,7 @@ const FAQ = () => {
         `}
       </style>
       <div
-        className={`min-h-screen ${
+        className={`min-h-screen transition-colors duration-500 ease-in-out ${
           isDarkMode
             ? "bg-customDark text-white"
             : "bg-customBlue text-gray-800"
@@ -131,8 +131,8 @@ const FAQItem = ({ faq, isDarkMode, animationDelay }) => {
       <button
         className={`flex justify-between items-center w-full py-4 text-left text-lg font-medium ${
           isDarkMode
-            ? "text-white hover:text-green-300"
-            : "text-black hover:text-green-500"
+            ? "text-white hover:text-blue-300"
+            : "text-black hover:text-blue-500"
         }`}
         onClick={() => setIsOpen(!isOpen)}
       >
