@@ -7,6 +7,7 @@ import darkHome from "../assets/Backgrounds/darkHome.jpg";
 import PropTypes from "prop-types";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { motion } from "framer-motion";
 
 const Home = ({ setCurrentPage }) => {
   const { theme } = useTheme();
@@ -109,6 +110,30 @@ const Home = ({ setCurrentPage }) => {
     window.location.href = "https://www.x.com";
   };
 
+  const scrollToInput = () => {
+    if (inputRef.current) {
+      const targetPosition = inputRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 500; // duration in milliseconds
+      let start = null;
+
+      const smoothScroll = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const progressPercentage = Math.min(progress / duration, 1);
+        window.scrollTo(0, startPosition + distance * progressPercentage);
+        if (progress < duration) {
+          requestAnimationFrame(smoothScroll);
+        } else {
+          inputRef.current.focus();
+        }
+      };
+
+      requestAnimationFrame(smoothScroll);
+    }
+  };
+
   return (
     <section>
       <div
@@ -124,13 +149,33 @@ const Home = ({ setCurrentPage }) => {
         }}
       ></div>
 
+      <div className='absolute xs:bottom-10  bottom-32 w-full flex justify-center items-center' onClick={scrollToInput}>
+          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-[#ffffff] flex justify-center items-start p-2'>
+            <motion.div
+              animate={{
+                y: [0, 24, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className='w-3 h-3 rounded-full bg-[#ffffff] mb-1'
+              
+            />
+          </div>
+      </div>
+
       <div
         className={`mb-10 ${
           mainPageTheme === "lightHome" ? "bg-customBlue" : "bg-customDark"
         }`}
         data-aos="fade-up"
+        data-aos-duration="1000"
       >
         <section className="bg-gray-400 bg-opacity-70 p-10 md:p-20 rounded-2xl w-full max-w-md mx-auto">
+        
+        
           <div className="text-center md:text-left flex items-center justify-center md:justify-start">
             <label className="mr-2 text-black font-bold">Sign in with</label>
             <button

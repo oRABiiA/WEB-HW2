@@ -36,7 +36,7 @@ const ChartPage = (props) => {
           />
         </button>
       </div>
-      <div className="fixed top-10 left-10 w-60 h-80 bg-zinc-800 p-4 shadow-2xl sm:rounded-3xl z-10 text-center">
+      <div className="fixed top-24 left-10 w-60 h-80 bg-zinc-800 p-4 shadow-2xl sm:rounded-3xl z-10 text-center">
         <h2 className="text-white text-xl font-semibold">Charts</h2>
         <div
           className="fixed mt-4 left-16 w-20 h-20 bg-zinc-700 hover:bg-zinc-600 p-4 shadow-2xl sm:rounded-3xl z-10"
