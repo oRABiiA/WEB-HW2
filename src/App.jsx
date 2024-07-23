@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import {useState, createContext, useContext, useEffect} from "react";
 import Home from "./Components/Home.jsx";
 import Footer from "./Components/Footer";
 import UploadPage from "./Components/UploadPage.jsx";
@@ -14,81 +14,89 @@ import "aos/dist/aos.css";
 export const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
+export const DataContext = createContext();
+export const useData = () => useContext(DataContext);
+
 const App = () => {
-  const [theme, setTheme] = useState("light");
-  const [currentPage, setCurrentPage] = useState("home");
-  const [fadeIn, setFadeIn] = useState(true);
+    const [theme, setTheme] = useState("dark");
+    const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState("home");
+    const [fadeIn, setFadeIn] = useState(true);
 
-  const chartNames = ["Bar Chart", "Line Chart"]; //targel bet #1 fake data
+    //const chartNames = ["Bar Chart", "Line Chart"]; //targel bet #1 fake data
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
 
-  useEffect(() => {
-    AOS.init({ duration: 2350 });
-  }, []);
+    useEffect(() => {
+        AOS.init({duration: 2350});
+    }, []);
 
-  const handlePageChange = (page, options = {}) => {
-    setFadeIn(false);
-    setTimeout(() => {
-      setCurrentPage(page);
-      setFadeIn(true);
-      if (options.scrollToBottom) {
-        //for About Sign up to scroll down
+    const handlePageChange = (page, options = {}) => {
+        setFadeIn(false);
         setTimeout(() => {
-          window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: "smooth",
-          });
-        }, 50);
-      } else {
-        // for other pages to start from the top
-        window.scrollTo(0, 0);
-      }
-    }, 300);
-  };
+            setCurrentPage(page);
+            setFadeIn(true);
+            if (options.scrollToBottom) {
+                //for About Sign up to scroll down
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: document.documentElement.scrollHeight,
+                        behavior: "smooth",
+                    });
+                }, 50);
+            } else {
+                // for other pages to start from the top
+                window.scrollTo(0, 0);
+            }
+        }, 300);
+    };
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <Home setCurrentPage={handlePageChange} />;
-      case "chartPage":
-        return (
-          <ChartPage data={chartNames} setCurrentPage={handlePageChange} />
-        );
-      case "uploadPage":
-        return <UploadPage setCurrentPage={handlePageChange} />;
-      case "createPage":
-        return <CreatePage setCurrentPage={handlePageChange} />;
-      case "about":
-        return <About setCurrentPage={handlePageChange} />;
-      case "contact":
-        return <Contact setCurrentPage={handlePageChange} />;
-      case "faq":
-        return <FAQ />;
-    }
-  };
+    const renderPage = () => {
+        switch (currentPage) {
+            case "home":
+                return <Home setCurrentPage={handlePageChange}/>;
+            case "chartPage":
+                return (
+                    <ChartPage data={data} setCurrentPage={handlePageChange}/>
+                );
+            case "uploadPage":
+                return <UploadPage setCurrentPage={handlePageChange}/>;
+            case "createPage":
+                return <CreatePage setCurrentPage={handlePageChange}/>;
+            case "about":
+                return <About setCurrentPage={handlePageChange}/>;
+            case "contact":
+                return <Contact setCurrentPage={handlePageChange}/>;
+            case "faq":
+                return <FAQ/>;
+        }
+    };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div
-        className={`flex flex-col min-h-screen transition-colors duration-500 ease-in-out ${
-          theme === "light" ? "bg-customBlue" : "bg-customDark"
-        }`}
-      >
-        <Header setCurrentPage={handlePageChange} />
-        <div
-          className={`flex-grow transition-opacity duration-300 ${
-            fadeIn ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {renderPage()}
-        </div>
-        <Footer />
-      </div>
-    </ThemeContext.Provider>
-  );
+    return (
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
+            <DataContext.Provider value={{data, setData}}>
+                <div
+                    className={`flex flex-col min-h-screen transition-colors duration-500 ease-in-out ${
+                        theme === "light" ? "bg-customBlue" : "bg-customDark"
+                    }`}
+                >
+                    <Header setCurrentPage={handlePageChange}/>
+                    <div
+                        className={`flex-grow transition-opacity duration-300 ${
+                            fadeIn ? "opacity-100" : "opacity-0"
+                        }`}
+                    >
+                        {renderPage()}
+                        {/*{console.log("data from home", data)}*/}
+                    </div>
+                    <Footer/>
+                </div>
+            </DataContext.Provider>
+        </ThemeContext.Provider>
+    );
 };
 
 export default App;
+

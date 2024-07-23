@@ -145,8 +145,10 @@ const Home = ({setCurrentPage}) => {
                         mainPageTheme === "lightHome" ? lightHome : darkHome
                     })`,
                     backgroundRepeat: "no-repeat",
-                    backgroundPosition: "cover",
-                    backgroundSize: "50% 70%",
+                    backgroundPosition: "center",
+                    backgroundSize: "contain",
+                    margin: "0 auto",
+
                 }}
             >
                 {/* final boss, fix the dimensions for all screens, who solves this gets +100000000 aura*/}
@@ -195,7 +197,7 @@ const Home = ({setCurrentPage}) => {
                         <label className="mr-2 text-black font-bold">Sign in with</label>
                         <button
                             type="button"
-                            className="mx-1 h-9 w-9 rounded-full bg-blue-500 border-blue-500 hover:bg-neutral-500 text-white shadow-[0_4px_9px_-4px_#e5e5e5]"
+                            className="mx-1 h-9 w-9 rounded-full bg-blue-500 border-blue-500 hover:bg-neutral-500 text-white shadow-[0_4px_9px_-4px_#e5e5e5] transition-colors duration-1000"
                             onClick={navigateToFacebook}
                         >
                             <BiLogoFacebook
@@ -205,7 +207,7 @@ const Home = ({setCurrentPage}) => {
                         </button>
                         <button
                             type="button"
-                            className="mx-1 h-9 w-9 rounded-full bg-black border-black text-white hover:bg-neutral-500 uppercase leading-normal shadow-[0_4px_9px_-4px_#e5e5e5]"
+                            className="mx-1 h-9 w-9 rounded-full bg-black border-black text-white hover:bg-neutral-500 uppercase leading-normal shadow-[0_4px_9px_-4px_#e5e5e5] transition-colors duration-1000"
                             onClick={navigateToTwitter}
                         >
                             <RiTwitterXFill
@@ -284,10 +286,10 @@ const Home = ({setCurrentPage}) => {
                     </div>
                     <div className="text-center">
                         <button
-                            className={`mt-4 hover:bg-neutral-400 px-4 py-2 font-bold uppercase rounded text-xs tracking-wider ${
+                            className={`mt-4 px-4 py-2 font-bold uppercase rounded text-xs tracking-wider transition-colors duration-1000 ${
                                 isDarkMode
-                                    ? "bg-blue-400 text-black"
-                                    : "bg-blue-600 text-white"
+                                    ? "bg-blue-700 text-black hover:bg-blue-500"
+                                    : "bg-blue-600 text-white hover:bg-blue-400"
                             }`}
                             type="submit"
                             onClick={() => setCurrentPage("uploadPage")}
