@@ -15,5 +15,6 @@ If you wish to clone the repo into your workspace, please consider the following
   - npm install react aos
   - npm install gsap @gsap/react
   - npm install prop-types
+  - npm install react-tailwindcss-select
   - npm run dev
 <br>
