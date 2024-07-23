@@ -158,7 +158,7 @@ const Home = ({setCurrentPage}) => {
                 {/*    />*/}
                 {/*</div>*/}
             </div>
-            <div className='absolute xs:bottom-10 top-48 w-full flex justify-center items-center'
+            <div className='absolute xs:bottom-10 top-48 w-full flex justify-center items-center cursor-pointer'
                  onClick={scrollToInput}>
                 <div
                     className={`w-[35px] h-[64px] rounded-3xl border-4 flex justify-center items-start p-2 ${
