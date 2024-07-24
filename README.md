@@ -7,14 +7,7 @@ If you wish to clone the repo into your workspace, please consider the following
 (You must do the following in order to run the code properly):
 <br>
   - Clone the Repo
-  ### Do the following in the terminal:
-  - npm install
-  - npm install tw-elements-react
-  - npm install react-icons
-  - npm install aos
-  - npm install react aos
-  - npm install gsap @gsap/react
-  - npm install prop-types
-  - npm install react-tailwindcss-select
+  #### Do the following in the terminal:
+  - Run .\install_dependencies.bat
   - npm run dev
 <br>
