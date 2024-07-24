@@ -11,11 +11,17 @@ const CreatePage = ({ setCurrentPage }) => {
 
     const Sizeoptions = [
         { value: "1", label: "1 X 1" },
-        { value: "2", label: "2 X 2" }
+        { value: "2", label: "1 X 2" },
+        { value: "3", label: "1 X 3" },
+        { value: "4", label: "2 X 2" } // Changed value to "4" to represent 4 charts
     ];
 
     const Chartsoptions = [
         { value: "Bar", label: "Bar Chart" },
+        { value: "pie", label: "Pie Chart" },
+        { value: "radar", label: "Radar Chart" },
+        { value: "polarArea", label: "Polar Area Chart" },
+        { value: "doughnut", label: "Doughnut Chart" },
         { value: "Line", label: "Line Chart" }
     ];
 
@@ -33,9 +39,11 @@ const CreatePage = ({ setCurrentPage }) => {
     const [selectedtype, setType] = useState(null);
     const [additionalSelects, setAdditionalSelects] = useState([]);
     const [chartsdata, setchartsdata] = useState([]);
+
     const handleChange = (value) => {
         setSize(value);
-        const numSelects = Math.pow(parseInt(value.value), 2);
+        setchartsdata([]);
+        const numSelects = parseInt(value.value); // Changed to parseInt
         setAdditionalSelects(Array(numSelects).fill().map(() => ({
             chartType: null,
             inputs: Array(7).fill('0')
@@ -54,31 +62,25 @@ const CreatePage = ({ setCurrentPage }) => {
         setAdditionalSelects(newAdditionalSelects);
     };
 
-    const handleClearButton=()=>{
+    const handleClearButton = () => {
         setSize(null);
         setchartsdata([]);
-    }
+    };
+
+    
 
     const handleCreatButton = () => {
-        // Use the chart type from the first item or default to 'Bar'
-        const chartType = additionalSelects[0]?.chartType?.value || 'Bar';
-        const chartLabel = additionalSelects[0]?.chartType?.label || 'Unknown Chart';
-
-        // Prepare datasets for each chart configuration
         const datasets = additionalSelects.map((item) => ({
-            label: item.chartType ? item.chartType.label : 'Unknown Chart',
+            //label: item.chartType ? item.chartType.label : 'data',
+            label: 'data',
             data: item.inputs.map((input) => parseInt(input, 10) || 0),
-            backgroundColor: "rgba(0,0,0,0.4)", // Example color
-            borderColor: "rgba(75,192,192,1)", // Example color
+            backgroundColor: "rgba(0,0,0,0.4)",
+            borderColor: "rgba(75,192,192,1)",
             borderWidth: 1
         }));
 
-        // Set the selected chart type and data
-        setType(chartType);
         setchartsdata(datasets);
     };
-
-
 
     return (
         <section>
@@ -142,7 +144,6 @@ const CreatePage = ({ setCurrentPage }) => {
                     ))}
 
                 </div>
-
             )}
             <div className="w-full flex justify-center mt-4">
                 <div className="w-full border-t border-gray-700" />
@@ -171,36 +172,34 @@ const CreatePage = ({ setCurrentPage }) => {
             >
 
                 <div
-
-                    className={`relative isolate overflow-hidden px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 mb-32 ${
+                    className={`relative isolate overflow-hidden px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:gap-x-20 lg:px-24 lg:pt-0 mb-32 ${
                         isDarkMode ? "bg-gray-800" : "bg-gray-400"
                     }`}
                 >
-                    <div className="flex flex-col items-center justify-center w-full h-full lg:ml-30 sm:pb-20">
-                        <div className="relative mt-16 lg:mt-8 w-4/5 h-[400px]">
-                            <TEChart
-                                type={selectedtype ? selectedtype.toLowerCase() : 'bar'} // Default to 'bar'
-                                data={{
-                                    labels: days, // Ensure these labels match the input length
-                                    datasets: chartsdata, // Directly use the dataset array
-                                }}
-                                options={{
-                                    maintainAspectRatio: false,
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
+                    <div className="grid grid-cols-2 gap-4 w-full h-full lg:ml-30 sm:pb-20">
+                        {additionalSelects.map((item, index) => (
+                            <div key={index} className="relative mt-16 lg:mt-8 w-full h-[400px]">
+                                <TEChart
+                                    type={item.chartType ? item.chartType.value.toLowerCase() : 'bar'} // Default to 'bar'
+                                    data={{
+                                        labels: days, // Ensure these labels match the input length
+                                        datasets: chartsdata[index] ? [chartsdata[index]] : [] // Use individual dataset
+                                    }}
+                                    options={{
+                                        maintainAspectRatio: false,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                            },
                                         },
-                                    },
-                                }}
-                            />
-                        </div>
+                                    }}
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
-
-
         </section>
-
     );
 };
 
