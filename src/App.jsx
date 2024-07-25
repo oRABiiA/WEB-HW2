@@ -39,7 +39,6 @@ const App = () => {
             setCurrentPage(page);
             setFadeIn(true);
             if (options.scrollToBottom) {
-                //for About Sign up to scroll down
                 setTimeout(() => {
                     window.scrollTo({
                         top: document.documentElement.scrollHeight,

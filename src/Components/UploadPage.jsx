@@ -3,6 +3,7 @@ import {useTheme} from "../App";
 import {useData} from "../App";
 import {useEffect, useState} from "react";
 import BackArrow from "../assets/Charts/arrow-small-left.png";
+import {json} from "react-router-dom";
 
 const UploadPage = ({setCurrentPage}) => {
     const {theme} = useTheme();
@@ -10,27 +11,17 @@ const UploadPage = ({setCurrentPage}) => {
     const isDarkMode = theme === "dark";
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileError, setFileError] = useState("");
-    // const [jsonAsText, setJsonAsText] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    // useEffect(() => {
-    //     if (jsonAsText && Array.isArray(jsonAsText)) {
-    //         console.log("First element in JSON array:", jsonAsText[0]);
-    //     } else if (jsonAsText && typeof jsonAsText === 'object') {
-    //         const firstKey = Object.keys(jsonAsText)[0];
-    //         console.log("First element in JSON object:", { [firstKey]: jsonAsText[firstKey] });
-    //     }
-    // }, [jsonAsText]);
 
     // Accept the file and save it locally
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             if (file.type === "application/json" || file.name.endsWith(".json")) {
-                setSelectedFile(file);
+                //setSelectedFile(file);
                 setFileError("");
                 readJsonFile(file);
             } else {
@@ -48,6 +39,7 @@ const UploadPage = ({setCurrentPage}) => {
                 const jsonData = JSON.parse(event.target.result);
                 // setJsonAsText(jsonData);
                 setData(jsonData);
+                setSelectedFile(jsonData)
                 setCurrentPage("chartPage");
             } catch (error) {
                 console.error("Error parsing JSON file:", error);
@@ -59,9 +51,17 @@ const UploadPage = ({setCurrentPage}) => {
     };
 
     // // validate JSON file
-    // const validateJSON = (file) => {
+    // const validateJSON = () => {
     //     // check if the json file suits the graph generation
-    // };
+    //     const chartType = selectedFile[0].type.toLowerCase();
+    //     if (chartType === "bar" || chartType === "line" || chartType === "bar horizontal" || chartType === "pie" || chartType === "doughnut" || chartType === "polar" || chartType === "radar") {
+    //         if (selectedFile[0].x.length !== selectedFile.y.length) {
+    //             setFileError("Error reading file");
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
 
     return (<div
