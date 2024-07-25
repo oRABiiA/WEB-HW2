@@ -35,20 +35,50 @@ const ChartPage = ({data, setCurrentPage}) => {
     }
 
     const generateBarChart = () => {
+
+        const chartData = [];
+        const dataColors = [
+            "rgba(63, 81, 181, 0.5)",
+            "rgba(77, 182, 172, 0.5)",
+            "rgba(66, 133, 244, 0.5)",
+            "rgba(156, 39, 176, 0.5)",
+            "rgba(233, 30, 99, 0.5)",
+            "rgba(66, 73, 244, 0.4)",
+            "rgba(66, 133, 244, 0.2)",
+            "rgba(255, 193, 7, 0.5)",
+            "rgba(0, 188, 212, 0.5)",
+            "rgba(139, 195, 74, 0.5)",
+            "rgba(244, 67, 54, 0.5)",
+            "rgba(158, 158, 158, 0.5)",
+        ];
+
+        for(let i = 0; i < data[0].y.length; i++) {
+            let info = {
+                    label: data[0].label[i],
+                    data: data[0].y[i],
+                    backgroundColor: dataColors[i],
+            }
+            chartData.push(info);
+        }
+
         return (
             <TEChart
                 type="bar"
                 data={{
                     labels: data[0].x,
-                    datasets: [
-                        {
-                            label: data[0].label,
-                            data: data[0].y,
-                            backgroundColor: isDarkMode ? "white" : "orange",
-                        },
-                    ],
+                    datasets: chartData,
                 }}
                 darkOptions={{
+                    plugins :{
+                        legend: {
+                            labels: {
+                                color: isDarkMode ? "white" : "black",
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                    },
                     scales: {
                         x: {
                             stacked: true,
@@ -80,20 +110,51 @@ const ChartPage = ({data, setCurrentPage}) => {
     }
 
     const generateLineChart = () => {
+
+        const chartData = [];
+        const dataColors = [
+            "rgba(63, 81, 181, 0.5)",
+            "rgba(77, 182, 172, 0.5)",
+            "rgba(66, 133, 244, 0.5)",
+            "rgba(156, 39, 176, 0.5)",
+            "rgba(233, 30, 99, 0.5)",
+            "rgba(66, 73, 244, 0.4)",
+            "rgba(66, 133, 244, 0.2)",
+            "rgba(255, 193, 7, 0.5)",
+            "rgba(0, 188, 212, 0.5)",
+            "rgba(139, 195, 74, 0.5)",
+            "rgba(244, 67, 54, 0.5)",
+            "rgba(158, 158, 158, 0.5)",
+        ];
+
+        for(let i = 0; i < data[0].y.length; i++) {
+            let info = {
+                label: data[0].label[i],
+                data: data[0].y[i],
+                backgroundColor: dataColors[i],
+                borderColor: dataColors[i],
+            }
+            chartData.push(info);
+        }
+
         return (
             <TEChart
                 type="line"
                 data={{
                     labels: data[0].x,
-                    datasets: [
-                        {
-                            label: data[0].label,
-                            data: data[0].y,
-                            backgroundColor: isDarkMode ? "white" : "orange",
-                        },
-                    ],
+                    datasets: chartData,
                 }}
                 darkOptions={{
+                    plugins :{
+                        legend: {
+                            labels: {
+                                color: isDarkMode ? "white" : "black",
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                    },
                     scales: {
                         x: {
                             stacked: true,
@@ -125,21 +186,51 @@ const ChartPage = ({data, setCurrentPage}) => {
     }
 
     const generateHorizontalBarChart = () => {
+
+        const chartData = [];
+        const dataColors = [
+            "rgba(63, 81, 181, 0.5)",
+            "rgba(77, 182, 172, 0.5)",
+            "rgba(66, 133, 244, 0.5)",
+            "rgba(156, 39, 176, 0.5)",
+            "rgba(233, 30, 99, 0.5)",
+            "rgba(66, 73, 244, 0.4)",
+            "rgba(66, 133, 244, 0.2)",
+            "rgba(255, 193, 7, 0.5)",
+            "rgba(0, 188, 212, 0.5)",
+            "rgba(139, 195, 74, 0.5)",
+            "rgba(244, 67, 54, 0.5)",
+            "rgba(158, 158, 158, 0.5)",
+        ];
+
+        for(let i = 0; i < data[0].y.length; i++) {
+            let info = {
+                label: data[0].label[i],
+                data: data[0].y[i],
+                backgroundColor: dataColors[i],
+            }
+            chartData.push(info);
+        }
+
         return (
             <TEChart
                 type="bar"
                 data={{
                     labels: data[0].x,
-                    datasets: [
-                        {
-                            label: data[0].label,
-                            data: data[0].y,
-                            backgroundColor: isDarkMode ? "white" : "orange",
-                        },
-                    ],
+                    datasets: chartData,
                 }}
                 darkOptions={{
                     indexAxis: "y",
+                    plugins :{
+                        legend: {
+                            labels: {
+                                color: isDarkMode ? "white" : "black",
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                    },
                     scales: {
                         x: {
                             stacked: true,
@@ -152,7 +243,7 @@ const ChartPage = ({data, setCurrentPage}) => {
                                 zeroLineBorderDashOffset: [2],
                             },
                             ticks: {
-                                color: isDarkMode ? "#555" : "black",
+                                color: isDarkMode ? "white" : "black",
                             },
                         },
                         y: {
@@ -161,7 +252,7 @@ const ChartPage = ({data, setCurrentPage}) => {
                                 display: false,
                             },
                             ticks: {
-                                color: isDarkMode ? "#555" : "black",
+                                color: isDarkMode ? "white" : "black",
                             },
                         },
                     },
@@ -319,17 +410,39 @@ const ChartPage = ({data, setCurrentPage}) => {
     }
 
     const generateRadarChart = () => {
+
+        const chartData = [];
+        const dataColors = [
+            "rgba(63, 81, 181, 0.5)",
+            "rgba(233, 30, 99, 0.5)",
+            "rgba(255, 193, 7, 0.5)",
+            "rgba(66, 133, 244, 0.5)",
+            "rgba(156, 39, 176, 0.5)",
+            "rgba(66, 73, 244, 0.4)",
+            "rgba(66, 133, 244, 0.2)",
+            "rgba(77, 182, 172, 0.5)",
+            "rgba(0, 188, 212, 0.5)",
+            "rgba(139, 195, 74, 0.5)",
+            "rgba(244, 67, 54, 0.5)",
+            "rgba(158, 158, 158, 0.5)",
+        ];
+
+        for(let i = 0; i < data[0].y.length; i++) {
+            let info = {
+                label: data[0].label[i],
+                data: data[0].y[i],
+                backgroundColor: dataColors[i],
+                backdropColor: dataColors[i],
+            }
+            chartData.push(info);
+        }
+
         return (
             <TEChart
                 type="radar"
                 data={{
                     labels: data[0].x,
-                    datasets: [
-                        {
-                            label: data[0].label,
-                            data: data[0].y,
-                        },
-                    ],
+                    datasets: chartData,
                 }}
                 darkOptions={{
                     maintainAspectRatio: false,
@@ -415,28 +528,56 @@ const ChartPage = ({data, setCurrentPage}) => {
                 data={{
                     datasets: dataSetInfo,
                 }}
+                darkOptions={{
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: isDarkMode ? "white" : "black",
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            titleColor: isDarkMode ? "white" : "black",
+                            bodyColor: isDarkMode ? "white" : "black",
+                            backgroundColor: isDarkMode ? "black" : "white",
+                        },
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: {
+                                display: false,
+                            },
+                            ticks: {
+                                color: isDarkMode ? "white" : "black",
+                            },
+                        },
+                        y: {
+                            stacked: true,
+                            grid: {
+                                display: true,
+                                color: isDarkMode ? "#555" : "black",
+                                borderDash: [2],
+                                zeroLineColor: "rgba(0,0,0,0)",
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2],
+                            },
+                            ticks: {
+                                color: isDarkMode ? "white" : "black",
+                            },
+                        },
+                    },
+
+                }}
             />
         );
     }
 
     const generateScatterChart = () => {
-
         const chartData = data[0];
         const dataAmount = data[0].x.length;
-        const dataColors = [
-            "rgba(63, 81, 181, 0.5)",
-            "rgba(77, 182, 172, 0.5)",
-            "rgba(66, 133, 244, 0.5)",
-            "rgba(156, 39, 176, 0.5)",
-            "rgba(233, 30, 99, 0.5)",
-            "rgba(66, 73, 244, 0.4)",
-            "rgba(66, 133, 244, 0.2)",
-            "rgba(255, 193, 7, 0.5)",
-            "rgba(0, 188, 212, 0.5)",
-            "rgba(139, 195, 74, 0.5)",
-            "rgba(244, 67, 54, 0.5)",
-            "rgba(158, 158, 158, 0.5)",
-        ]
 
         const dataSetInfo = []
 
@@ -519,6 +660,7 @@ const ChartPage = ({data, setCurrentPage}) => {
         );
     }
 
+
     return (
         <section>
             <div
@@ -565,4 +707,3 @@ ChartPage.propTypes = {
     data: PropTypes.array.isRequired,
 };
 export default ChartPage;
-
