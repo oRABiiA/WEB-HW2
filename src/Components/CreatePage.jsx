@@ -76,7 +76,7 @@ import PropTypes from "prop-types";
              label: 'Data',
              data: item.dataInputs.map((input) => parseInt(input, 10) || 0),
              labels: item.nameInputs.length ? item.nameInputs : days,
-             backgroundColor: (item.chartType.value === "Bar" || item.chartType.value === "Line" || item.chartType.value === "Radar" ) ? item.colorBLR : item.colorPDP,
+             backgroundColor: (item.chartType.value === "bar" || item.chartType.value === "line" || item.chartType.value === "radar" ) ? item.colorBLR : item.colorPDP,
              borderWidth: 1
          }));
          setCreate('1');
@@ -244,7 +244,8 @@ import PropTypes from "prop-types";
                                 </button>
                              </div>
             </div>
-            {createON && (<div
+            {createON && (
+            <div
                             className={`transition-colors duration-500 ease-in-out ${
                                 isDarkMode ? "bg-customDark" : "bg-customBlue"
                             } mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8`}
@@ -276,7 +277,7 @@ import PropTypes from "prop-types";
                     </div>
                 </div>     
             </div> 
-            )}      
+        )}          
         </section>
      );
  };
@@ -286,3 +287,4 @@ import PropTypes from "prop-types";
  };
 
  export default CreatePage;
+
