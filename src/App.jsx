@@ -22,8 +22,8 @@ const App = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState("home");
     const [fadeIn, setFadeIn] = useState(true);
+    const [user, setUser] = useState(null);
 
-    //const chartNames = ["Bar Chart", "Line Chart"]; //targel bet #1 fake data
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -33,9 +33,21 @@ const App = () => {
         AOS.init({duration: 2350});
     }, []);
 
+    //To start from top when refreshing the page
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            window.scrollTo(0, 0);
+        };
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
+
     const handlePageChange = (page, options = {}) => {
         setFadeIn(false);
         setTimeout(() => {
+            setUser(options);
             setCurrentPage(page);
             setFadeIn(true);
             if (options.scrollToBottom) {
@@ -61,7 +73,7 @@ const App = () => {
                     <ChartPage data={data} setCurrentPage={handlePageChange}/>
                 );
             case "uploadPage":
-                return <UploadPage setCurrentPage={handlePageChange}/>;
+                return <UploadPage setCurrentPage={handlePageChange} user={user}/>;
             case "createPage":
                 return <CreatePage setCurrentPage={handlePageChange}/>;
             case "about":

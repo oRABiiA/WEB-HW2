@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import BackArrow from "../assets/Charts/arrow-small-left.png";
 // import {json} from "react-router-dom";
 
-const UploadPage = ({setCurrentPage}) => {
+const UploadPage = ({setCurrentPage, user}) => {
     const {theme} = useTheme();
     const {setData} = useData();
     const isDarkMode = theme === "dark";
@@ -214,7 +214,7 @@ const UploadPage = ({setCurrentPage}) => {
                         <h2
                             className={`text-3xl font-bold tracking-tight ${theme === "light" ? "text-gray-700" : "text-white"} sm:text-4xl mt-16 md:text-center `}
                         >
-                            Hello, Guest!
+                            {`Hello, ${user}!`}
                         </h2>
                     </div>
                 </div>
@@ -224,6 +224,7 @@ const UploadPage = ({setCurrentPage}) => {
 
 UploadPage.propTypes = {
     setCurrentPage: PropTypes.func.isRequired,
+    user: PropTypes.any.isRequired,
 };
 
 export default UploadPage;
