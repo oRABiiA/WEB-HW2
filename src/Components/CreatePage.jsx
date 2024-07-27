@@ -142,7 +142,7 @@ import { useRef } from "react";
 
      return (
         <section>
-            <div className="fixed bottom-20 left-10 w-16 h-16 bg-zinc-800 p-2 shadow-2xl rounded-full z-10 flex items-center justify-center">
+            <div className="fixed bottom-40 left-10 w-16 h-16 bg-zinc-800 p-2 shadow-2xl rounded-full z-10 flex items-center justify-center">
                 <button
                     onClick={() => setCurrentPage("uploadPage")}
                     className="w-full h-full rounded-full bg-white text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white flex items-center justify-center"

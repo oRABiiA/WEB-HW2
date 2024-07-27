@@ -3,7 +3,7 @@ import {useTheme} from "../App";
 import {useData} from "../App";
 import {useEffect, useState} from "react";
 import BackArrow from "../assets/Charts/arrow-small-left.png";
-// import {json} from "react-router-dom";
+import InfoCard from "./InfoCard.jsx"
 
 const UploadPage = ({setCurrentPage, user}) => {
     const {theme} = useTheme();
@@ -123,8 +123,7 @@ const UploadPage = ({setCurrentPage, user}) => {
         <div
             className={`transition-colors duration-500 ease-in-out ${theme === "light" ? "bg-customBlue" : "bg-customDark"}`}
         >
-            <div
-                className={`fixed bottom-40 left-10 w-16 h-16 p-2 shadow-2xl rounded-full z-10 flex items-center justify-center ${isDarkMode ? "bg-gray-600" : "bg-gray-400"}`}>
+            <div className={`fixed bottom-40 left-10 w-16 h-16 p-2 shadow-2xl rounded-full z-10 flex items-center justify-center ${isDarkMode ? "bg-gray-600" : "bg-gray-400"}`}>
                 <button
                     onClick={() => setCurrentPage("home")}
                     className="w-full h-full rounded-full bg-white text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white flex items-center justify-center"
@@ -137,9 +136,7 @@ const UploadPage = ({setCurrentPage, user}) => {
                 </button>
             </div>
             <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-                <div
-                    className={`relative isolate overflow-hidden rounded-3xl ${theme === "light" ? "bg-white" : "bg-gray-900"} px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0`}
-                >
+                <div className={`relative isolate overflow-hidden rounded-3xl ${theme === "light" ? "bg-white" : "bg-gray-900"} px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0`}>
                     <svg
                         viewBox="0 0 1024 1024"
                         aria-hidden="true"
@@ -219,6 +216,7 @@ const UploadPage = ({setCurrentPage, user}) => {
                     </div>
                 </div>
             </div>
+            <InfoCard />
         </div>);
 };
 
